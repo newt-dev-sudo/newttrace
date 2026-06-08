@@ -1,0 +1,36 @@
+{
+  "name": "newttrace",
+  "version": "1.0.0",
+  "description": "Discord-native telemetry SDK that converts Discord runtime events into structured, exportable lifecycle data",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "telemetry",
+    "analytics",
+    "sdk",
+    "datadog"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "discord.js": ">=14.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.42",
+    "discord.js": "^14.26.4",
+    "typescript": "^5.9.3",
+    "vitepress": "^1.6.4"
+  }
+}

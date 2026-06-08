@@ -48,8 +48,8 @@ export class EventCapture {
     this._listenersAttached = false;
   }
 
-  private handleGuildCreate(guild: Guild): void {
-    const source = this.attribution.resolveGuildSource(guild.id);
+  private async handleGuildCreate(guild: Guild): Promise<void> {
+    const source = await this.attribution.resolveGuildSource(guild.id);
     this.activation.recordJoin(guild.id, source ?? undefined);
 
     const event = normalizeGuild(guild, {

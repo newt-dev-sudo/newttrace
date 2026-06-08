@@ -1,5 +1,69 @@
 import { AttributionConfig, StateStore, GuildStore } from "./types";
 
+// HTTP store: queries redirect server directly. No shared Redis needed.
+export class HttpGuildStore implements GuildStore {
+  private baseUrl: string;
+
+  constructor(baseUrl: string) {
+    this.baseUrl = baseUrl.replace(/\/$/, "");
+  }
+
+  async get(guildId: string): Promise<string | undefined> {
+    try {
+      const res = await fetch(`${this.baseUrl}/resolve?guild_id=${guildId}`);
+      const data = await res.json() as { source?: string | null };
+      return data.source ?? undefined;
+    } catch {
+      return undefined;
+    }
+  }
+
+  async set(): Promise<void> {
+    // Server handles writes via /callback
+    return;
+  }
+
+  async delete(): Promise<void> {
+    return;
+  }
+}
+
+// Redis store for shared attribution between redirect server and bot
+// Requires `npm install ioredis`
+export class RedisGuildStore implements GuildStore {
+  private client: any;
+  private ttlSeconds: number;
+
+  constructor(redisUrl: string, ttlSeconds = 86400) {
+    try {
+      const Redis = require("ioredis");
+      this.client = new Redis(redisUrl);
+      this.ttlSeconds = ttlSeconds;
+    } catch {
+      throw new Error(
+        "ioredis is required for RedisGuildStore. Install it: npm install ioredis"
+      );
+    }
+  }
+
+  async get(guildId: string): Promise<string | undefined> {
+    const value = await this.client.get(`newttrace:guild:${guildId}`);
+    return value ?? undefined;
+  }
+
+  async set(guildId: string, source: string): Promise<void> {
+    await this.client.setex(
+      `newttrace:guild:${guildId}`,
+      this.ttlSeconds,
+      source
+    );
+  }
+
+  async delete(guildId: string): Promise<void> {
+    await this.client.del(`newttrace:guild:${guildId}`);
+  }
+}
+
 export class InMemoryStateStore implements StateStore {
   private store = new Map<string, string>();
 
@@ -54,14 +118,14 @@ export class AttributionTracker {
     return source;
   }
 
-  recordGuildSource(guildId: string, source: string): void {
-    this.guildStore.set(guildId, source);
+  async recordGuildSource(guildId: string, source: string): Promise<void> {
+    await this.guildStore.set(guildId, source);
   }
 
-  resolveGuildSource(guildId: string): string | undefined {
-    const source = this.guildStore.get(guildId);
+  async resolveGuildSource(guildId: string): Promise<string | undefined> {
+    const source = await this.guildStore.get(guildId);
     if (source) {
-      this.guildStore.delete(guildId);
+      await this.guildStore.delete(guildId);
     }
     return source;
   }
@@ -88,7 +152,7 @@ export class AttributionTracker {
     params.set("permissions", permissions);
 
     if (campaignId) {
-      const state = `campaign_${campaignId}`;
+      const state = crypto.randomUUID();
       this.trackState(state, campaignId);
       params.set("state", state);
     }

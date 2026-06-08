@@ -4,3 +4,6 @@ dist/
 .env
 .DS_Store
 coverage/
+
+# Test scripts contain real tokens - do not commit
+scripts/test-*.ts

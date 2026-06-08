@@ -164,8 +164,44 @@ Maps guild IDs to attribution sources. Used with `recordGuildSource()` / `resolv
 
 ```ts
 interface GuildStore {
-  get(guildId: string): string | undefined;
-  set(guildId: string, source: string): void;
-  delete(guildId: string): void;
+  get(guildId: string): string | undefined | Promise<string | undefined>;
+  set(guildId: string, source: string): void | Promise<void>;
+  delete(guildId: string): void | Promise<void>;
 }
+```
+
+### `HttpGuildStore`
+
+Queries a redirect server directly for attribution. No shared database needed.
+
+```ts
+import { HttpGuildStore } from "newttrace";
+
+new HttpGuildStore("https://your-worker.workers.dev");
+```
+
+The store calls `GET /resolve?guild_id=XXX` and expects `{ source?: string }` in response.
+
+### `RedisGuildStore`
+
+Shared Redis store for attribution data. Requires `npm install ioredis`.
+
+```ts
+import { RedisGuildStore } from "newttrace";
+
+new RedisGuildStore("redis://localhost:6379", 86400);
+```
+
+**Parameters:**
+- `redisUrl: string` — Redis connection URL
+- `ttlSeconds: number` — Key TTL. Default: `86400` (24 hours)
+
+### `InMemoryGuildStore`
+
+Default in-memory store. Attribution is lost on bot restart.
+
+```ts
+import { InMemoryGuildStore } from "newttrace";
+
+new InMemoryGuildStore();
 ```

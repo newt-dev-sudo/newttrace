@@ -36,9 +36,9 @@ export interface StateStore {
 }
 
 export interface GuildStore {
-  get(guildId: string): string | undefined;
-  set(guildId: string, source: string): void;
-  delete(guildId: string): void;
+  get(guildId: string): string | undefined | Promise<string | undefined>;
+  set(guildId: string, source: string): void | Promise<void>;
+  delete(guildId: string): void | Promise<void>;
 }
 
 export interface DatadogExporterConfig {

@@ -1,6 +1,12 @@
 export { NewttraceSDK } from "./sdk";
 export { EventCapture } from "./capture";
-export { AttributionTracker, InMemoryStateStore, InMemoryGuildStore } from "./attribution";
+export {
+  AttributionTracker,
+  InMemoryStateStore,
+  InMemoryGuildStore,
+  HttpGuildStore,
+  RedisGuildStore,
+} from "./attribution";
 export { ActivationTracker } from "./activation";
 export {
   normalizeGuild,

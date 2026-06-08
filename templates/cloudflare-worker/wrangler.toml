@@ -1,0 +1,9 @@
+name = "newttrace-redirect"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# KV namespace for install sessions and guild attribution
+[[kv_namespaces]]
+binding = "NEWTTRACE_KV"
+id = "cb80c7cec1d3461495065993276e6706"
+preview_id = "cb80c7cec1d3461495065993276e6706"

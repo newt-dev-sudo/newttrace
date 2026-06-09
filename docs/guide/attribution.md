@@ -122,12 +122,13 @@ Before starting, you need:
 - A [Cloudflare account](https://dash.cloudflare.com/sign-up) (free)
 - Your Discord application's **Client ID** (found in Discord Developer Portal)
 
-### Step 1: Deploy the Cloudflare Worker
+### Step 1: Get the template and deploy
 
-A complete server is included in `templates/cloudflare-worker/`.
+The Cloudflare Worker template is in the GitHub repository, not the npm package. Clone the repo to get it:
 
 ```bash
-cd templates/cloudflare-worker
+git clone https://github.com/newt-dev-sudo/newttrace.git
+cd newttrace/templates/cloudflare-worker
 npm install
 ```
 

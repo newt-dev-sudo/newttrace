@@ -108,9 +108,10 @@ The time-window method tells you "80 installs from TOPGG today" but not "this sp
 
 ### Setup
 
-1. Deploy the worker (see [Attribution Guide](./attribution.md) for full steps):
+1. Clone the repo and deploy the worker (see [Attribution Guide](./attribution.md) for full steps):
 ```bash
-cd templates/cloudflare-worker
+git clone https://github.com/newt-dev-sudo/newttrace.git
+cd newttrace/templates/cloudflare-worker
 npm install
 npx wrangler login
 npx wrangler kv:namespace create NEWTTRACE_KV

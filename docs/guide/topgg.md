@@ -102,6 +102,8 @@ Result: `guildCreate` contains zero trace of `source` or `topgg`.
 
 The only way to pass data through Discord OAuth is the `state` parameter, which requires a redirect server to intercept the callback.
 
+**For per-guild attribution (knowing exactly which server came from TOPGG), see the [Attribution Guide](./attribution.md) which includes a Cloudflare Worker template.**
+
 ## Conversion metrics you can compute
 
 - **Install rate**: `guild_join` / bot-site clicks

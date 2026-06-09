@@ -23,6 +23,15 @@
     "sdk",
     "datadog"
   ],
+  "author": "newt-dev-sudo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/newt-dev-sudo/newttrace.git"
+  },
+  "bugs": {
+    "url": "https://github.com/newt-dev-sudo/newttrace/issues"
+  },
+  "homepage": "https://github.com/newt-dev-sudo/newttrace#readme",
   "license": "MIT",
   "peerDependencies": {
     "discord.js": ">=14.0.0"

@@ -114,6 +114,14 @@ Bot emits guild_join event with source: "topgg" to Datadog
 | **Attribution** | UUID→source mapping, callback resolution |
 | **Telemetry** | Bot emits `guild_join` with resolved `source` |
 
+### Prerequisites
+
+Before starting, you need:
+
+- A [Discord application](https://discord.com/developers/applications) with a bot user
+- A [Cloudflare account](https://dash.cloudflare.com/sign-up) (free)
+- Your Discord application's **Client ID** (found in Discord Developer Portal)
+
 ### Step 1: Deploy the Cloudflare Worker
 
 A complete server is included in `templates/cloudflare-worker/`.

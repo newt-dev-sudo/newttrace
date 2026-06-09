@@ -3,9 +3,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "newttrace",
   description: "Discord-native telemetry SDK for structured lifecycle analytics",
-  head: [["link", { rel: "icon", href: "/newttrace.png" }]],
   themeConfig: {
-    logo: "/newttrace.png",
     nav: [
       { text: "Guide", link: "/guide/getting-started" },
       { text: "Reference", link: "/reference/exporters" },

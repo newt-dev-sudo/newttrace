@@ -1,6 +1,11 @@
 # newttrace
 
+[![npm version](https://img.shields.io/npm/v/newttrace)](https://www.npmjs.com/package/newttrace)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 Discord-native telemetry SDK that converts Discord runtime events into structured, exportable lifecycle data.
+
+**[Live Documentation](https://newttrace-docs.pages.dev)** | **[npm Package](https://www.npmjs.com/package/newttrace)** | **[GitHub Issues](https://github.com/newt-dev-sudo/newttrace/issues)**
 
 ## What it is
 
@@ -84,12 +89,14 @@ See the [Attribution Guide](https://github.com/newt-dev-sudo/newttrace/blob/main
 
 ## Documentation
 
-- [Getting Started](docs/guide/getting-started.md)
-- [Activation Tracking](docs/guide/activation.md)
-- [Attribution](docs/guide/attribution.md)
-- [TOPGG Conversion Tracking](docs/guide/topgg.md)
-- [API Reference](docs/reference/api.md)
-- [Exporters](docs/reference/exporters.md)
+All documentation is hosted at **[newttrace-docs.pages.dev](https://newttrace-docs.pages.dev)**.
+
+- [Getting Started](https://newttrace-docs.pages.dev/guide/getting-started)
+- [Activation Tracking](https://newttrace-docs.pages.dev/guide/activation)
+- [Attribution](https://newttrace-docs.pages.dev/guide/attribution)
+- [TOPGG Conversion Tracking](https://newttrace-docs.pages.dev/guide/topgg)
+- [API Reference](https://newttrace-docs.pages.dev/reference/api)
+- [Exporters](https://newttrace-docs.pages.dev/reference/exporters)
 
 ## License
 

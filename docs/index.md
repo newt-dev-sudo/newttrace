@@ -2,8 +2,6 @@
 
 Discord-native telemetry SDK for structured lifecycle analytics.
 
-![newttrace logo](/newttrace.png)
-
 ## Overview
 
 newttrace converts Discord runtime events into structured, exportable telemetry data. Track installs, activations, and attributions without managing infrastructure.

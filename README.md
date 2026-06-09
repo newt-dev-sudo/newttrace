@@ -23,25 +23,21 @@ npm install newttrace discord.js
 
 ```typescript
 import { Client, GatewayIntentBits } from "discord.js";
-import { initNewttrace, DatadogExporter } from "newttrace";
+import { initNewttrace, FileExporter } from "newttrace"; // or WebhookExporter, DatadogExporter
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-const newttrace = initNewttrace({
+initNewttrace({
   botId: "my-discord-bot",
-  exporters: [
-    new DatadogExporter({
-      apiKey: process.env.DD_API_KEY!,
-      service: "discord-bot",
-      site: "datadoghq.com", // use "datadoghq.eu" for EU accounts
-    }),
-  ],
+  exporters: [new FileExporter({ path: "./events.log" })], // free, no external service
   auto: true,
   client,
 });
 
 client.login(process.env.DISCORD_TOKEN);
 ```
+
+**Swap one line to use Datadog, Better Stack, your own API, Redis, Kafka, or NATS. No other code changes needed.**
 
 ## Features
 

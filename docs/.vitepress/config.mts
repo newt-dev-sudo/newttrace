@@ -11,24 +11,21 @@ export default defineConfig({
     sidebar: {
       "/guide/": [
         {
-          text: "Getting Started",
-          link: "/guide/getting-started",
+          text: "Setup",
+          collapsed: false,
+          items: [
+            { text: "Getting Started", link: "/guide/getting-started" },
+            { text: "Attribution", link: "/guide/attribution" },
+          ],
         },
         {
-          text: "Activation Tracking",
-          link: "/guide/activation",
-        },
-        {
-          text: "Attribution",
-          link: "/guide/attribution",
-        },
-        {
-          text: "TOPGG Conversion Tracking",
-          link: "/guide/topgg",
-        },
-        {
-          text: "Datadog Query Cookbook",
-          link: "/guide/datadog-queries",
+          text: "Understanding Your Data",
+          collapsed: false,
+          items: [
+            { text: "Events Explained", link: "/guide/activation" },
+            { text: "TOPGG Conversion Tracking", link: "/guide/topgg" },
+            { text: "Datadog Query Cookbook", link: "/guide/datadog-queries" },
+          ],
         },
       ],
       "/reference/": [

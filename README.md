@@ -50,6 +50,15 @@ client.login(process.env.DISCORD_TOKEN);
 - **Attribution**: Two approaches — time-window correlation (zero infrastructure) or per-install tracking via redirect server
 - **Pluggable Exporters**: Datadog, Webhook, File, Redis, Kafka, NATS
 
+## Why newttrace?
+
+| Approach | Setup time | Cost | Know actual installs? | Per-guild attribution? | Track activation? |
+|----------|-----------|------|----------------------|------------------------|-----------------|
+| No tracking | 0 min | $0 | No | No | No |
+| TOPGG stats | 5 min | Free | No | No | No |
+| Build your own | 2+ weeks | $100+/mo | Yes | Maybe | Hard |
+| **newttrace** | 5 min | Free | Yes | Yes | Yes |
+
 ## Attribution
 
 ### Option 1: Time-window correlation (default, $0)

@@ -26,6 +26,10 @@ export default defineConfig({
           text: "TOPGG Conversion Tracking",
           link: "/guide/topgg",
         },
+        {
+          text: "Datadog Query Cookbook",
+          link: "/guide/datadog-queries",
+        },
       ],
       "/reference/": [
         {

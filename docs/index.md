@@ -6,6 +6,15 @@ Discord-native telemetry SDK for structured lifecycle analytics.
 
 newttrace converts Discord runtime events into structured, exportable telemetry data. Track installs, activations, and attributions without managing infrastructure.
 
+## Why newttrace?
+
+| Approach | Setup time | Cost | Know actual installs? | Per-guild attribution? | Track activation? |
+|----------|-----------|------|----------------------|------------------------|-----------------|
+| No tracking | 0 min | $0 | No | No | No |
+| TOPGG stats | 5 min | Free | No | No | No |
+| Build your own | 2+ weeks | $100+/mo | Yes | Maybe | Hard |
+| **newttrace** | 5 min | Free | Yes | Yes | Yes |
+
 ## Documentation
 
 ### Guides

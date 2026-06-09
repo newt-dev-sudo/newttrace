@@ -224,12 +224,27 @@ const newttrace = initNewttrace({
 
 ### Step 5: Generate tracked invite URLs
 
-For each listing site, use the worker's `/install` endpoint directly:
+For each platform or campaign, use the worker's `/install` endpoint directly:
 
 ```
+# Bot listing sites
 https://newttrace-redirect.yourname.workers.dev/install?source=topgg
-https://newttrace-redirect.yourname.workers.dev/install?source=dbl&campaign=summer_2024
+https://newttrace-redirect.yourname.workers.dev/install?source=discordbotlist
+
+# Social and community
+https://newttrace-redirect.yourname.workers.dev/install?source=twitter
+https://newttrace-redirect.yourname.workers.dev/install?source=reddit
+https://newttrace-redirect.yourname.workers.dev/install?source=github
+
+# Your own properties
+https://newttrace-redirect.yourname.workers.dev/install?source=website
+https://newttrace-redirect.yourname.workers.dev/install?source=newsletter
+
+# With campaign tracking
+https://newttrace-redirect.yourname.workers.dev/install?source=topgg&campaign=summer_2024
 ```
+
+**Any source string works.** Use whatever naming convention makes sense for your analytics. The value is stored as-is in the `source` attribute of your Datadog events.
 
 Or generate programmatically:
 

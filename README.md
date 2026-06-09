@@ -69,7 +69,7 @@ initNewttrace({
 
 ### Option 2: Per-install tracking (advanced, $0)
 
-Know exactly which server came from TOPGG vs DiscordBotList. Requires a Cloudflare Worker (free tier included).
+Know exactly which server came from TOPGG, Twitter, Reddit, your website, or any custom source. Requires a Cloudflare Worker (free tier included).
 
 ```typescript
 import { initNewttrace, DatadogExporter, HttpGuildStore } from "newttrace";

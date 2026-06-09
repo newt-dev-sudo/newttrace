@@ -102,7 +102,61 @@ Result: `guildCreate` contains zero trace of `source` or `topgg`.
 
 The only way to pass data through Discord OAuth is the `state` parameter, which requires a redirect server to intercept the callback.
 
-**For per-guild attribution (knowing exactly which server came from TOPGG), see the [Attribution Guide](./attribution.md) which includes a Cloudflare Worker template.**
+## Per-guild attribution with Cloudflare Worker
+
+The time-window method tells you "80 installs from TOPGG today" but not "this specific server came from TOPGG." For per-guild tracking, deploy the included Cloudflare Worker template.
+
+### Setup
+
+1. Deploy the worker (see [Attribution Guide](./attribution.md) for full steps):
+```bash
+cd templates/cloudflare-worker
+npm install
+npx wrangler login
+npx wrangler kv:namespace create NEWTTRACE_KV
+npx wrangler deploy
+npx wrangler secret put DISCORD_CLIENT_ID
+npx wrangler secret put DISCORD_REDIRECT_URI  # your-worker.workers.dev/callback
+```
+
+2. Add the callback URL to Discord Developer Portal → OAuth2 → Redirects
+
+3. Configure your bot with `HttpGuildStore`:
+```ts
+import { initNewttrace, DatadogExporter, HttpGuildStore } from "newttrace";
+
+const newttrace = initNewttrace({
+  botId: "my-bot",
+  exporters: [new DatadogExporter({ apiKey: "...", service: "my-bot" })],
+  auto: true,
+  client,
+  attribution: {
+    guildStore: new HttpGuildStore("https://your-worker.workers.dev"),
+  },
+});
+```
+
+4. Use the worker's `/install` URL on your TOPGG listing:
+```
+https://your-worker.workers.dev/install?source=topgg
+```
+
+### Result in Datadog
+
+```
+@service:my-bot @event:guild_join
+```
+
+Event attributes:
+```json
+{
+  "source": "topgg",
+  "guild_id": "123456789",
+  "bot_id": "my-bot"
+}
+```
+
+**Cost:** $0 — Cloudflare Workers free tier covers 100,000 requests/day.
 
 ## Conversion metrics you can compute
 

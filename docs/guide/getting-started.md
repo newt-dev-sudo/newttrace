@@ -43,7 +43,7 @@ const client = new Client({
 });
 
 const newttrace = initNewttrace({
-  botId: "my-discord-bot",
+  botId: "my-discord-bot",  // any unique identifier for your bot
   version: "1.2.0",
   exporters: [
     new DatadogExporter({
@@ -59,7 +59,33 @@ const newttrace = initNewttrace({
 client.login(process.env.DISCORD_TOKEN);
 ```
 
-Set environment variables and run:
+**What is `botId`?** Any unique string that identifies your bot. Used to filter events in Datadog. Examples: `"music-bot"`, `"mod-bot-prod"`, `"myapp-discord-v2"`.
+
+### Run with a `.env` file (recommended)
+
+Create `.env` in the same folder as `bot.ts`:
+
+```env
+DISCORD_TOKEN=your-bot-token
+DD_API_KEY=your-datadog-api-key
+```
+
+Install `dotenv`:
+```bash
+npm install dotenv
+```
+
+Add this line at the top of `bot.ts`:
+```ts
+import "dotenv/config";
+```
+
+Run normally:
+```bash
+npx ts-node bot.ts
+```
+
+### Or set env vars inline
 
 ```bash
 # macOS/Linux

@@ -2,6 +2,17 @@
 
 Ready-to-use queries for common Discord bot analytics scenarios. Replace `my-bot` with your actual `service` name.
 
+**Note:** `service` is whatever you passed to `DatadogExporter` — you can name it anything:
+```ts
+new DatadogExporter({ apiKey: "...", service: "my-discord-bot" })
+// Query: @service:my-discord-bot
+```
+
+You can also filter by `bot_id` (from `initNewttrace({ botId: "..." })`):
+```
+@bot_id:my-bot @event:guild_join
+```
+
 ## Core metrics
 
 ### Total installs today

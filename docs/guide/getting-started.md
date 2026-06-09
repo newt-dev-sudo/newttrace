@@ -59,7 +59,15 @@ const newttrace = initNewttrace({
 client.login(process.env.DISCORD_TOKEN);
 ```
 
-**What is `botId`?** Any unique string that identifies your bot. Used to filter events in Datadog. Examples: `"music-bot"`, `"mod-bot-prod"`, `"myapp-discord-v2"`.
+**What is `botId`?** Any unique string that identifies your bot. Examples: `"music-bot"`, `"mod-bot-prod"`, `"myapp-discord-v2"`. This becomes `@bot_id` in Datadog.
+
+**What is `service`?** Whatever you pass to `DatadogExporter`. This becomes `@service` in Datadog. You can use the same name as `botId` or something different (e.g. `"discord-bot-prod"` vs `"discord-bot-dev"`).
+
+**Query in Datadog:**
+```
+@service:my-discord-bot @event:guild_join
+@bot_id:my-discord-bot @event:guild_join
+```
 
 ### Run with a `.env` file (recommended)
 
